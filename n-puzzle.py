@@ -74,8 +74,8 @@ def manhattanDist(index,element):
 	fBoard_x = idx%3
 	x = index/3
 	y = index%3
-	manhattan += math.abs(x-fBoard_x)
-	manhattan += math.abs(y-fBoard_y)
+	manhattan += math.fabs(x-fBoard_x)
+	manhattan += math.fabs(y-fBoard_y)
 	return manhattan
 
 		 
