@@ -1,8 +1,8 @@
 import heapq
 from random import shuffle
 
-fBoard = [1,2,3
-		  4,5,6
+fBoard = [1,2,3,
+		  4,5,6,
 		  7,8,0]
 
 n=3
@@ -58,12 +58,12 @@ def aStar():
 			new_cost = newBoard.totalCost
 			if newBoard._array not in visited or new_cost < cost[newBoard]:
 				cost[newBoard] = new_cost
-				visited{newBoard} = 1
+				visited[newBoard] = 1
 				newBoard.parent = tmp_board
 				heapq.push(pq,(newBoard.totalCost,newBoard))
 
 	while var != start:
-		print(var,end="\n")
+		print(var,"\n")
 		var = var.parent
 
 
