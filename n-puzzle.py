@@ -10,6 +10,7 @@ class Board():
 		self.cost = cost
 		self.totalCost = self.cost + self.heuristic
 		self.parent = parent
+		self.hashvalue = hash(tuple(self._array))
 
 	def _printBoard(self):
 		for var in self._array:
@@ -19,8 +20,7 @@ class Board():
 				print(var+", ")
 
 	def __hash__(self):
-		t = tuple(self._array)
-		return hash(t)
+		return self.hashvalue
 
 	def __eq__(self,other):
 		return self._array == other._array
@@ -28,12 +28,14 @@ class Board():
 def aStar():
 	pq = []
 	cost = {}
-	visted = {}
+	visited = {}
 	start = Board(board,0,None)
 	end = Board(fBoard,99,None)
 	heapq.heappush(pq,(start.totalCost,start))
 	while pq:
-		tmp_board = heapq.heappop(pq)
+		tmp_tuple = heapq.heappop(pq)
+		tmp_board = tmp_tuple[1]
+		print(tmp_board.__class__)
 		if tmp_board.heuristic == 0:
 			end = tmp_board
 			break
