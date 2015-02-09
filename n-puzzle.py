@@ -13,11 +13,11 @@ class Board():
 		self.hashvalue = hash(tuple(self._array))
 
 	def _printBoard(self):
-		for var in self._array:
-			if var%3==0:
-				print("\n")
+		for var in range(len(self._array)):
+			if var%3==0 and var!=0:
+				print "\n",self._array[var],",",
 			else:
-				print(var+", ")
+				print self._array[var],",",
 
 	def __hash__(self):
 		return self.hashvalue
@@ -35,7 +35,7 @@ def aStar():
 	while pq:
 		tmp_tuple = heapq.heappop(pq)
 		tmp_board = tmp_tuple[1]
-		print(tmp_board.__class__)
+		#print(tmp_board._array)
 		if tmp_board.heuristic == 0:
 			end = tmp_board
 			break
@@ -51,16 +51,20 @@ def aStar():
 			moveBoard[index],moveBoard[moveIndex] = moveBoard[moveIndex],moveBoard[index]
 			newBoard = Board(moveBoard,tmp_board.cost+1,tmp_board)
 			new_cost = newBoard.totalCost
-			if newBoard._array not in visited or new_cost < cost[newBoard]:
+			if newBoard not in visited or new_cost < cost[newBoard]:
 				cost[newBoard] = new_cost
 				visited[newBoard] = 1
 				newBoard.parent = tmp_board
 				heapq.heappush(pq,(newBoard.totalCost,newBoard))
 
+	var = end
 	while var != start:
-		print(var,"\n")
+		print "\n"
+		var._printBoard()
 		var = var.parent
 
+	print "\n"
+	var._printBoard()
 
 def manhattanDist(index,element):
 	idx = fBoard.index(element)
@@ -107,7 +111,7 @@ n=3
 board = [i for i in range(9)]
 shuffle(board)
 
-
+print(board)
 aStar()
 
 
